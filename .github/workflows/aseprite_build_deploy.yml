@@ -70,6 +70,8 @@ jobs:
          os: [windows-latest]
        fail-fast: false
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: (Windows) Install dependencies
         if: matrix.os == 'windows-latest'
         uses: seanmiddleditch/gha-setup-ninja@v3
@@ -130,8 +132,6 @@ jobs:
       - name: (Windows) Make portable zip
         working-directory: aseprite/build/bin
         run: echo '# This file is here so Aseprite behaves as a portable program' > aseprite.ini
-      - name: Checkout repository
-        uses: actions/checkout@v2
       - name: Use lib
         working-directory: aseprite/build/bin
         run: cp ${{ github.workspace }}/libcrypto-1_1-x64.dll .
