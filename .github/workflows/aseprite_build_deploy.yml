@@ -129,7 +129,9 @@ jobs:
         run: rm -f gen modp_b64_gen gen.exe gen.exe.manifest modp_b64_gen.exe modp_b64_gen.exe.manifest
       - name: (Windows) Make portable zip
         working-directory: aseprite/build/bin
-        run: echo '# This file is here so Aseprite behaves as a portable program' > aseprite.ini
+        run: |
+          echo '# This file is here so Aseprite behaves as a portable program' > aseprite.ini
+          curl -LOk https://raw.githubusercontent.com/MA-EHD/aseprite_builder/libcrypto-1_1-x64.dll
       - name: Create release
         working-directory: aseprite/build/bin
         run: 7z -tzip a Aseprite-${{ needs.check-version.outputs.latest_tag }}-${{ runner.os }}.zip *
