@@ -133,8 +133,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Use lib
-        working-directory: aseprite/build/bin
-        run: cp ${{ github.workspace }}/libcrypto-1_1-x64.dll .
+        run: cp ${{ github.workspace }}/libcrypto-1_1-x64.dll aseprite/build/bin/
       - name: Create release
         working-directory: aseprite/build/bin
         run: 7z -tzip a Aseprite-${{ needs.check-version.outputs.latest_tag }}-${{ runner.os }}.zip *
