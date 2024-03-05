@@ -133,6 +133,7 @@ jobs:
         working-directory: aseprite/build/bin
         run: echo '# This file is here so Aseprite behaves as a portable program' > aseprite.ini
       - name: Use lib
+        if: matrix.os ==  'windows-latest'
         working-directory: aseprite/build/bin
         run: cp ${{ github.workspace }}/libcrypto-1_1-x64.dll .
       - name: Create release
